@@ -1,0 +1,20 @@
+#!/bin/sh
+
+IP=$1
+
+SCRIPT_PATH=`echo $(cd $(dirname $0);pwd)`
+
+if [ "$IP" = ""  ]; then
+  echo "usage: $0 {ip address}"
+  exit 1
+fi
+
+COUNTRY_CODE=`curl -s ipinfo.io/${IP}/country`
+
+if [ "$COUNTRY_CODE" = "JP" ]; then
+  echo "japan"
+else
+  COUNTRY=`egrep "\s${COUNTRY_CODE}\s" ${SCRIPT_PATH}/data/iso3166-countrycodes.txt | awk '{print $1}'`
+  echo "$COUNTRY"
+fi
+

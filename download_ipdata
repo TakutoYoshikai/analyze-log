@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd `dirname $0`/data
+wget ftp://ftp.fu-berlin.de/doc/iso/iso3166-countrycodes.txt
